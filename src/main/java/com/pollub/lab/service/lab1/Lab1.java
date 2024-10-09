@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class Lab1 {
@@ -16,7 +17,7 @@ public class Lab1 {
                 "BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang", "Mercedes C-Class",
                 "BMW X5", "Audi A3", "Ford Fiesta"
         );
-        runMethodsSet(cars, "Audi");
+        runMethodsSet(cars, "Audi", 200);
 
 
         System.out.println("\n\n------ ZESTAW 2 -------");
@@ -24,7 +25,7 @@ public class Lab1 {
                 "Ferrari F8", "Lamborghini Huracan", "Porsche 911", "McLaren 720S",
                 "Porsche 911 GT3-RS", "Audi R8", "BMW M4"
         );
-        runMethodsSet(cars2, "Porsche");
+        runMethodsSet(cars2, "Porsche", 900);
 
 
         System.out.println("\n\n------ ZESTAW 3 -------");
@@ -32,13 +33,13 @@ public class Lab1 {
                 "Mercedes S-Class", "Audi A8",
                 "Jaguar XJ", "Maserati Quattroporte", "Porsche Panamera", "Maserati Ghibli"
         );
-        runMethodsSet(cars3, "Maserati");
+        runMethodsSet(cars3, "Maserati", 500);
     }
 
-    private void runMethodsSet(List<String> cars, String filterQuery) {
+    private void runMethodsSet(List<String> cars, String filterQuery, Integer bound) {
         filterCarBrands(cars, filterQuery);
         countDuplicates(cars);
-        mapListToRentalPrices(cars);
+        mapListToRentalPrices(cars, bound);
         //TODO dopisać wywołania dla funkcji zapisu/odczytu z pliku
     }
 
@@ -61,18 +62,14 @@ public class Lab1 {
         System.out.println("Liczba powtórzeń samochodów: " + carFrequencies);
     }
 
-    private void mapListToRentalPrices(List<String> cars) {
+    private void mapListToRentalPrices(List<String> cars, Integer bound) {
         System.out.println("\n------ Task 3: Mapowanie samochodów na pseudolosową cenę najmu ------");
 
         Random random = new Random();
-        Map<String, Integer> carRentalPrices = cars.stream()
-                .collect(Collectors.toMap(
-                        car -> car,
-                        car -> random.nextInt(200) + 50,
-                        (existing, replacement) -> existing
-                ));
+        Stream<String> carsWithPrices = cars.stream()
+                .map(car -> car + " - " + (random.nextInt(bound) + 100) + " PLN/24h");
 
-        System.out.println("Ceny wynajmu samochodów: " + carRentalPrices);
+        carsWithPrices.forEach(System.out::println);
     }
 
     //TODO dopisać funkcje odczytu/zapisu z pliku
