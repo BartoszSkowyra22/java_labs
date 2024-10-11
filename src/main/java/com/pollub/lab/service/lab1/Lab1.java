@@ -2,6 +2,7 @@ package com.pollub.lab.service.lab1;
 
 import org.springframework.stereotype.Service;
 
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,20 +38,23 @@ public class Lab1 {
     }
 
     private void runMethodsSet(List<String> cars, String filterQuery, Integer bound) {
-        filterCarBrands(cars, filterQuery);
+        List<String> filteredCars = filterCarBrands(cars, filterQuery);
         countDuplicates(cars);
         mapListToRentalPrices(cars, bound);
         //TODO dopisać wywołania dla funkcji zapisu/odczytu z pliku
+        saveFile(filteredCars);
+        readFile();
     }
 
 
-    private void filterCarBrands(List<String> cars, String filterQuery) {
+    private List<String> filterCarBrands(List<String> cars, String filterQuery) {
         System.out.println("------ Task 1: Filtrowanie marek samochodów ------");
         List<String> filteredCars = cars.stream()
                 .filter(car -> car.toLowerCase(Locale.ROOT).contains(filterQuery.toLowerCase(Locale.ROOT)))
                 .toList();
 
         System.out.println("Samochody marki " + filterQuery + ": " + filteredCars);
+        return filteredCars;
     }
 
     private void countDuplicates(List<String> cars) {
@@ -73,5 +77,39 @@ public class Lab1 {
     }
 
     //TODO dopisać funkcje odczytu/zapisu z pliku
+
+
+    private void saveFile(List<String> cars){
+        File file = new File("wynik.txt");
+        System.out.println("Saving into file...");
+        try{
+            FileWriter fileWriter = new FileWriter(file, false);
+            for(String car : cars){
+                fileWriter.write(car + "\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Saved!");
+
+    }
+
+    private void readFile(){
+
+        System.out.println("Reading file...");
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("wynik.txt"));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException ex){
+            throw new RuntimeException(ex);
+        }
+        System.out.println("Done!");
+    }
 }
 
