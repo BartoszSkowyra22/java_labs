@@ -44,8 +44,12 @@ public class Lab1 {
         List<String> filteredCars = filterCarBrands(cars, filterQuery);
         countDuplicates(cars);
         mapListToRentalPrices(cars, bound);
-        saveFile(filteredCars, filename);
-        readFile(filename);
+        try {
+            saveFile(filteredCars, filename);
+            readFile(filename);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -78,9 +82,9 @@ public class Lab1 {
         carsWithPrices.forEach(System.out::println);
     }
 
-    private void saveFile(List<String> cars) {
-        Path path = Paths.get("wynik.txt");
-        System.out.println("Saving into file...");
+    private void saveFile(List<String> cars, String filename) {
+        Path path = Paths.get(filename);
+        System.out.println("\nSaving into file...");
         try {
             Files.write(path, cars);
         } catch (IOException e) {
@@ -89,16 +93,16 @@ public class Lab1 {
         System.out.println("Saved!");
     }
 
-    private void readFile() {
-        Path path = Paths.get("wynik.txt");
-        System.out.println("Reading file...");
+    private void readFile(String filename) {
+        Path path = Paths.get(filename);
+        System.out.println("\nReading file...");
         try {
             List<String> lines = Files.readAllLines(path);
             for (String line : lines) {
                 System.out.println(line);
             }
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         System.out.println("Done!");
     }
