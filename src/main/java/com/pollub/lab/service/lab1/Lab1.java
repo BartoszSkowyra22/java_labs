@@ -97,7 +97,11 @@ public class Lab1 {
         Path path = Paths.get(filename);
         System.out.println("\nReading file...");
         try {
-            List<String> lines = Files.readAllLines(path);
+            List<String> lines = Files.readAllLines(path)
+                    .stream()
+                    .sorted()
+                    .toList();
+
             for (String line : lines) {
                 System.out.println(line);
             }
