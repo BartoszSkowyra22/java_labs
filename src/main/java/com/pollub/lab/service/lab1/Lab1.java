@@ -18,7 +18,7 @@ public class Lab1 {
                 "BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang", "Mercedes C-Class",
                 "BMW X5", "Audi A3", "Ford Fiesta"
         );
-        runMethodsSet(cars, "Audi", 200);
+        runMethodsSet(cars, "Audi", 200, "wynik1.txt");
 
 
         System.out.println("\n\n------ ZESTAW 2 -------");
@@ -26,7 +26,7 @@ public class Lab1 {
                 "Ferrari F8", "Lamborghini Huracan", "Porsche 911", "McLaren 720S",
                 "Porsche 911 GT3-RS", "Audi R8", "BMW M4"
         );
-        runMethodsSet(cars2, "Porsche", 900);
+        runMethodsSet(cars2, "Porsche", 900, "wynik2.txt");
 
 
         System.out.println("\n\n------ ZESTAW 3 -------");
@@ -34,16 +34,15 @@ public class Lab1 {
                 "Mercedes S-Class", "Audi A8",
                 "Jaguar XJ", "Maserati Quattroporte", "Porsche Panamera", "Maserati Ghibli"
         );
-        runMethodsSet(cars3, "Maserati", 500);
+        runMethodsSet(cars3, "Maserati", 500, "wynik3.txt");
     }
 
-    private void runMethodsSet(List<String> cars, String filterQuery, Integer bound) {
+    private void runMethodsSet(List<String> cars, String filterQuery, Integer bound, String filename) {
         List<String> filteredCars = filterCarBrands(cars, filterQuery);
         countDuplicates(cars);
         mapListToRentalPrices(cars, bound);
-        //TODO dopisać wywołania dla funkcji zapisu/odczytu z pliku
-        saveFile(filteredCars);
-        readFile();
+        saveFile(filteredCars, filename);
+        readFile(filename);
     }
 
 
@@ -76,15 +75,12 @@ public class Lab1 {
         carsWithPrices.forEach(System.out::println);
     }
 
-    //TODO dopisać funkcje odczytu/zapisu z pliku
-
-
-    private void saveFile(List<String> cars){
-        File file = new File("wynik.txt");
-        System.out.println("Saving into file...");
-        try{
+    private void saveFile(List<String> cars, String filename) {
+        File file = new File(filename);
+        System.out.println("\nSaving into file...");
+        try {
             FileWriter fileWriter = new FileWriter(file, false);
-            for(String car : cars){
+            for (String car : cars) {
                 fileWriter.write(car + "\n");
             }
             fileWriter.close();
@@ -95,18 +91,18 @@ public class Lab1 {
 
     }
 
-    private void readFile(){
+    private void readFile(String filename) {
 
-        System.out.println("Reading file...");
+        System.out.println("\nReading file...");
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("wynik.txt"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 System.out.println(line);
             }
-        } catch (IOException ex){
+        } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
         System.out.println("Done!");
