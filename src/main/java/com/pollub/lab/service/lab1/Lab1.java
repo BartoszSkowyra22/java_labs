@@ -3,6 +3,9 @@ package com.pollub.lab.service.lab1;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -75,31 +78,23 @@ public class Lab1 {
         carsWithPrices.forEach(System.out::println);
     }
 
-    private void saveFile(List<String> cars, String filename) {
-        File file = new File(filename);
-        System.out.println("\nSaving into file...");
+    private void saveFile(List<String> cars) {
+        Path path = Paths.get("wynik.txt");
+        System.out.println("Saving into file...");
         try {
-            FileWriter fileWriter = new FileWriter(file, false);
-            for (String car : cars) {
-                fileWriter.write(car + "\n");
-            }
-            fileWriter.close();
+            Files.write(path, cars);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         System.out.println("Saved!");
-
     }
 
-    private void readFile(String filename) {
-
-        System.out.println("\nReading file...");
-
+    private void readFile() {
+        Path path = Paths.get("wynik.txt");
+        System.out.println("Reading file...");
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
+            List<String> lines = Files.readAllLines(path);
+            for (String line : lines) {
                 System.out.println(line);
             }
         } catch (IOException ex) {
