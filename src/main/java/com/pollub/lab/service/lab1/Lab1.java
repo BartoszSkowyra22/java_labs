@@ -19,7 +19,7 @@ public class Lab1 {
         System.out.println("\n\n------ ZESTAW 1 -------");
         List<String> cars = Arrays.asList(
                 "BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang", "Mercedes C-Class",
-                "BMW X5", "Audi A3", "Ford Fiesta"
+                "BMW X5", "Audi A5", "Ford Fiesta"
         );
         runMethodsSet(cars, "Audi", 200, "wynik1.txt");
 
@@ -83,10 +83,14 @@ public class Lab1 {
     }
 
     private void saveFile(List<String> cars, String filename) {
-        Path path = Paths.get(filename);
+        File file = new File(filename);
         System.out.println("\nSaving into file...");
         try {
-            Files.write(path, cars);
+            FileWriter fileWriter = new FileWriter(file, false);
+            for (String car : cars) {
+                fileWriter.write(car + "\n");
+            }
+            fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -100,6 +104,7 @@ public class Lab1 {
             List<String> lines = Files.readAllLines(path)
                     .stream()
                     .sorted()
+                    .filter(car -> car.toLowerCase(Locale.ROOT).contains("a4".toLowerCase(Locale.ROOT)))
                     .toList();
 
             for (String line : lines) {
