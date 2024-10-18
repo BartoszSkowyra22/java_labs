@@ -1,29 +1,16 @@
 <?xml version="1.0" ?>
 <Cars>
-    <Car>
-        <Brand>Dodge</Brand>
-        <Model>Charger</Model>
+    <SportCar>
+        <Brand>Ferrari</Brand>
+        <Model>488</Model>
         <ProductionYear>2021</ProductionYear>
-        <Mileage>24560</Mileage>
-        <RentalPrice>400</RentalPrice>
-    </Car>
-    <Car>
-        <Brand>Chevrolet</Brand>
+        <RentalPrice>450</RentalPrice>
+    </SportCar>
+    <SportCar>
+        <Brand>Lamborghini</Brand>
+        <Model>Aventador</Model>
         <ProductionYear>2023</ProductionYear>
-        <Mileage>3278</Mileage>
         <RentalPrice>500</RentalPrice>
-    </Car>
-    <Car>
-        <Brand>Dodge</Brand>
-        <Model>Challenger</Model>
-        <ProductionYear>2017</ProductionYear>
-        <Mileage>49652</Mileage>
-        <RentalPrice>300</RentalPrice>
-    </Car>
-    <Car>
-        <Brand>Ford</Brand>
-        <Model>Mustang</Model>
-        <Mileage>29543</Mileage>
-        <RentalPrice>350</RentalPrice>
-    </Car>
+        <TopSpeed>350</TopSpeed>
+    </SportCar>
 </Cars>

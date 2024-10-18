@@ -1,6 +1,6 @@
 package com.pollub.lab;
 
-import com.pollub.lab.service.lab1.Lab3;
+import com.pollub.lab.service.lab3.Lab3;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

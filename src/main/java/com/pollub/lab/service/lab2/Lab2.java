@@ -1,4 +1,4 @@
-package com.pollub.lab.service.lab1;
+package com.pollub.lab.service.lab2;
 
 import org.springframework.stereotype.Service;
 
