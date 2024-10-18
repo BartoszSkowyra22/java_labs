@@ -48,10 +48,14 @@ public class Lab3 {
 
         // ODCZYT ZESTAWU Z BŁĘDAMI
         System.out.println("\n------ ODCZYT ZESTAWU Z BŁĘDAMI -------");
-        List<Car> readCars4 = readXml("assets/test.xml", "SportCar");
-        readCars4.forEach(car -> System.out.println("Marka: " + car.getBrand() + ", Model: " + car.getModel() +
-                ", Rok produkcji:  " + car.getProductionYear() + ", Przebieg: " + car.getMileage() +
-                ", Cena wynajmu: " + car.getRentalPrice()));
+        try {
+            List<Car> readCars4 = readXml("assets/test.xml", "SportCar");
+            readCars4.forEach(car -> System.out.println("Marka: " + car.getBrand() + ", Model: " + car.getModel() +
+                    ", Rok produkcji:  " + car.getProductionYear() + ", Przebieg: " + car.getMileage() +
+                    ", Cena wynajmu: " + car.getRentalPrice()));
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public void saveXml(List<? extends Car> cars, String fileName) {
@@ -143,7 +147,7 @@ public class Lab3 {
                             }
                         } else if (xmlStreamReader.isEndElement() && carType.equals(xmlStreamReader.getLocalName())) {
                             if (brand == null || model == null || productionYear <= 0 || mileage < 0 || rentalPrice <= 0) {
-                                throw new IllegalArgumentException("Nieprawidłowe dane samochodu. Nie można utworzyć obiektu Car.");
+                                throw new IllegalArgumentException("Nieprawidłowe dane samochodu. Nie można utworzyć obiektu");
                             }
                             if (car != null) cars.add(car);
                             break;

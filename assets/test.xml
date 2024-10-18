@@ -4,7 +4,8 @@
         <Brand>Ferrari</Brand>
         <Model>488</Model>
         <ProductionYear>2021</ProductionYear>
-        <RentalPrice>450</RentalPrice>
+        <Mileage>12348</Mileage>
+        <TopSpeed>330</TopSpeed>
     </SportCar>
     <SportCar>
         <Brand>Lamborghini</Brand>
