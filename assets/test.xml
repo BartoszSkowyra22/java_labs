@@ -1,17 +1,18 @@
 <?xml version="1.0" ?>
 <Cars>
     <SportCar>
+        <Brand>Lamborghini</Brand>
+        <Model>Aventador</Model>
+        <ProductionYear>2023</ProductionYear>
+        <Mileage>11234</Mileage>
+        <RentalPrice>500</RentalPrice>
+        <TopSpeed>350</TopSpeed>
+    </SportCar>
+    <SportCar>
         <Brand>Ferrari</Brand>
         <Model>488</Model>
         <ProductionYear>2021</ProductionYear>
         <Mileage>12348</Mileage>
         <TopSpeed>330</TopSpeed>
-    </SportCar>
-    <SportCar>
-        <Brand>Lamborghini</Brand>
-        <Model>Aventador</Model>
-        <ProductionYear>2023</ProductionYear>
-        <RentalPrice>500</RentalPrice>
-        <TopSpeed>350</TopSpeed>
     </SportCar>
 </Cars>
