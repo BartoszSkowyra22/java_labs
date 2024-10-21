@@ -32,8 +32,12 @@ build/
 ### VS Code ###
 .vscode/
 
-### Applications outputs ###
-wynik.txt
 wynik1.txt
 wynik2.txt
 wynik3.txt
+cars.xml
+cars2.xml
+/familyCars.xml
+/luxuryCars.xml
+/sportCars.xml
+

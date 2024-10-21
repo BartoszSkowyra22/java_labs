@@ -1,4 +1,4 @@
-package com.pollub.lab.service.lab1;
+package com.pollub.lab.service.lab2;
 
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class Lab1 {
+public class Lab2 {
 
-    public void runLab1() {
+    public void runLab2() {
         System.out.println("------ Run Lab1 ------");
 
         System.out.println("\n\n------ ZESTAW 1 -------");
