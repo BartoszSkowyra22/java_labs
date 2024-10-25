@@ -1,4 +1,4 @@
-package com.pollub.lab.model;
+package com.pollub.lab.model.lab3;
 
 public class SportCar extends Car {
     private int topSpeed;

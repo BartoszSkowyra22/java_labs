@@ -1,4 +1,4 @@
-package com.pollub.lab.model;
+package com.pollub.lab.model.lab3;
 
 public class Car {
     private String brand;

@@ -1,4 +1,4 @@
-package com.pollub.lab.model;
+package com.pollub.lab.model.lab3;
 
 public class LuxuryCar extends Car {
     private boolean hasMassageSeats;
