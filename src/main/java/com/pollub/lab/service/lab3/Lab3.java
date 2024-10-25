@@ -1,9 +1,10 @@
 package com.pollub.lab.service.lab3;
 
-import com.pollub.lab.model.Car;
-import com.pollub.lab.model.FamilyCar;
-import com.pollub.lab.model.LuxuryCar;
-import com.pollub.lab.model.SportCar;
+import com.pollub.lab.model.lab3.Car;
+import com.pollub.lab.model.lab3.FamilyCar;
+import com.pollub.lab.model.lab3.LuxuryCar;
+import com.pollub.lab.model.lab3.SportCar;
+import org.springframework.stereotype.Service;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
@@ -14,6 +15,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class Lab3 {
 
     public void runLab3() {

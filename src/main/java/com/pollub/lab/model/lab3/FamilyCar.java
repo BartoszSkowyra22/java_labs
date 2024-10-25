@@ -1,4 +1,4 @@
-package com.pollub.lab.model;
+package com.pollub.lab.model.lab3;
 
 public class FamilyCar extends Car {
     private int seatingCapacity;
