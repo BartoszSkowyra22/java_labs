@@ -1,4 +1,4 @@
-package com.pollub.lab.model.lab4;
+package com.pollub.lab.model.lab4.zadanie1;
 
 import lombok.*;
 
