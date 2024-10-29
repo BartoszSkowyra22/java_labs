@@ -1,6 +1,6 @@
 package com.pollub.lab.model.lab4.exercise3;
 
-import com.pollub.lab.model.lab4.exercise1.VehicleType;
+import com.pollub.lab.model.lab4.exercise1.VehicleTypeLombok;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class VehicleTypeDTO {
 
     private final double dailyRate;
 
-    public VehicleType toEntity() {
-        return new VehicleType(id, type, description, dailyRate);
+    public VehicleTypeLombok toEntity() {
+        return new VehicleTypeLombok(id, type, description, dailyRate);
     }
 }
