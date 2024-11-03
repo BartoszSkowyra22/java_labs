@@ -1,7 +1,7 @@
 package com.pollub.lab.model.lab4.exercise3;
 
 
-import com.pollub.lab.model.lab4.exercise1.Customer;
+import com.pollub.lab.model.lab4.exercise1.CustomerLombok;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class CustomerDTO {
 
     private final @NonNull String email;
 
-    public Customer toEntity(){
-        return new Customer(id, firstName, lastName, email);
+    public CustomerLombok toEntity(){
+        return new CustomerLombok(id, firstName, lastName, email);
     }
 }

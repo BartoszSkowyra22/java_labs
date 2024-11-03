@@ -10,16 +10,16 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rental {
+public class RentalLombok {
 
     @NonNull
     private Long id;
 
     @NonNull
-    private VehicleType vehicleType;
+    private VehicleTypeLombok vehicleTypeLombok;
 
     @NonNull
-    private Customer customer;
+    private CustomerLombok customerLombok;
 
     private LocalDate rentalDate;
 

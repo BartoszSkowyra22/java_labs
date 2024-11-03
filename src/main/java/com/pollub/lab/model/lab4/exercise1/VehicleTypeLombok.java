@@ -8,7 +8,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
-public class VehicleType {
+public class VehicleTypeLombok {
     private Long id;
 
     @NonNull
