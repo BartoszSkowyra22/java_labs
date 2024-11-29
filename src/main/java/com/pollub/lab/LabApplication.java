@@ -19,9 +19,9 @@ public class LabApplication {
 //        lab3.runLab3();
 
 //        Lab4 lab4 = new Lab4();
-//lab4.runLab4();
+//        lab4.runLab4();
 
-        Lab7 lab7 = new Lab7();
-        lab7.runLab7();
+//        Lab7 lab7 = new Lab7();
+//        lab7.runLab7();
     }
 }
