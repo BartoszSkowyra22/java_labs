@@ -2,17 +2,17 @@ package com.pollub.lab.service.lab5;
 
 import com.pollub.lab.model.lab5.Customer;
 import com.pollub.lab.repository.lab5.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public Customer addCustomer(Customer customer) {
         return customerRepository.save(customer);

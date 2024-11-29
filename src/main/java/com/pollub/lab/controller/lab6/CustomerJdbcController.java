@@ -1,19 +1,19 @@
 package com.pollub.lab.controller.lab6;
 
-import com.pollub.lab.model.lab5.Customer ;
+import com.pollub.lab.model.lab5.Customer;
 import com.pollub.lab.service.lab6.CustomerJdbcService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/jdbc/customers")
 public class CustomerJdbcController {
 
-    @Autowired
-    private CustomerJdbcService customerJdbcService;
+    private final CustomerJdbcService customerJdbcService;
 
     @PostMapping
     public String addCustomer(@RequestBody Customer customer) {

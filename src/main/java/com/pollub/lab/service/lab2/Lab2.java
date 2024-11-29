@@ -52,8 +52,7 @@ public class Lab2 {
         }
     }
 
-
-    private List<String> filterCarBrands(List<String> cars, String filterQuery) {
+    List<String> filterCarBrands(List<String> cars, String filterQuery) {
         System.out.println("------ Task 1: Filtrowanie marek samochodów ------");
         List<String> filteredCars = cars.stream()
                 .filter(car -> car.toLowerCase(Locale.ROOT).contains(filterQuery.toLowerCase(Locale.ROOT)))

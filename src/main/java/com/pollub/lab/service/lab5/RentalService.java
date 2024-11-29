@@ -3,17 +3,17 @@ package com.pollub.lab.service.lab5;
 
 import com.pollub.lab.model.lab5.Rental;
 import com.pollub.lab.repository.lab5.RentalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RentalService {
 
-    @Autowired
-    private RentalRepository rentalRepository;
+    private final RentalRepository rentalRepository;
 
     public Rental addRental(Rental rental) {
         return rentalRepository.save(rental);
