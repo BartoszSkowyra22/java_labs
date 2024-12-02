@@ -21,4 +21,14 @@ public class CustomerDTO {
     public CustomerLombok toEntity(){
         return new CustomerLombok(id, firstName, lastName, email);
     }
+
+    @Override
+    public String toString() {
+        return "CustomerDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

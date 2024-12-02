@@ -48,7 +48,6 @@ public class Lab3 {
         List<Car> savedLuxuryCars = readXml("luxuryCars.xml", "LuxuryCar");
         showParametersAfterReadXML(savedLuxuryCars);
 
-        // ODCZYT ZESTAWU Z BŁĘDAMI
         System.out.println("\n------ ODCZYT ZESTAWU Z BŁĘDAMI -------");
         try {
             List<Car> readCars4 = readXml("assets/test.xml", "SportCar");
@@ -92,7 +91,7 @@ public class Lab3 {
                 }
             }
 
-            xmlStreamWriter.writeEndElement(); //Cars
+            xmlStreamWriter.writeEndElement();
             xmlStreamWriter.writeEndDocument();
             xmlStreamWriter.flush();
 

@@ -84,6 +84,7 @@ public class Lab4 {
         System.out.println("VehicleTypeFromDTO: " + vehicleTypeLombokFromDTO);
         vehicleTypeLombokFromDTO.setId(12L);
         vehicleTypeDTO = new VehicleTypeDTO(vehicleTypeLombok.getId(), vehicleTypeLombok.getType(), vehicleTypeLombok.getDescription(), vehicleTypeLombok.getDailyRate());
+        System.out.println(vehicleTypeDTO);
         System.out.println("Po zmianach VehicleTypeFromDTO: " + vehicleTypeLombokFromDTO);
 
 
@@ -93,6 +94,7 @@ public class Lab4 {
         System.out.println("CustomerFromDTO: " + customerLombokFromDTO);
         customerLombokFromDTO.setFirstName("Alex");
         customerDTO = new CustomerDTO(customerLombok.getId(), customerLombok.getFirstName(), customerLombok.getLastName(), customerLombok.getEmail());
+        System.out.println(customerDTO);
         System.out.println("Po zmianach cutomerDTO: " + customerLombokFromDTO);
 
         RentalLombok rentalLombok = new RentalLombok(1L, vehicleTypeLombok, customerLombokFromDTO);
@@ -103,6 +105,7 @@ public class Lab4 {
         System.out.println("RentalFromDTO: " + rentalLombokFromDTO);
         rentalLombokFromDTO.setReturnDate(LocalDate.now().plusDays(15));
         rentalDTO = new RentalDTO(rentalLombok.getId(), rentalLombok.getVehicleTypeLombok(), rentalLombok.getCustomerLombok(), rentalLombok.getRentalDate(), rentalLombok.getReturnDate());
+        System.out.println(rentalDTO);
         System.out.println("Po zmianach rentalDTO: " + rentalLombokFromDTO);
     }
 }
