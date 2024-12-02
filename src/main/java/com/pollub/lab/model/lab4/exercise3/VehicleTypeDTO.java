@@ -22,4 +22,14 @@ public class VehicleTypeDTO {
     public VehicleTypeLombok toEntity() {
         return new VehicleTypeLombok(id, type, description, dailyRate);
     }
+
+    @Override
+    public String toString() {
+        return "VehicleTypeDTO{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
+                ", dailyRate=" + dailyRate +
+                '}';
+    }
 }

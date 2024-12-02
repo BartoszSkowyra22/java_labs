@@ -29,4 +29,15 @@ public class RentalDTO {
     public RentalLombok toEntity() {
         return new RentalLombok(id, vehicleTypeLombok, customerLombok, rentalDate, returnDate);
     }
+
+    @Override
+    public String toString() {
+        return "RentalDTO{" +
+                "id=" + id +
+                ", vehicleTypeLombok=" + vehicleTypeLombok +
+                ", customerLombok=" + customerLombok +
+                ", rentalDate=" + rentalDate +
+                ", returnDate=" + returnDate +
+                '}';
+    }
 }
