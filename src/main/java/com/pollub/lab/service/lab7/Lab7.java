@@ -15,7 +15,7 @@ public class Lab7 {
         exercise3();
     }
 
-    private static void exercise3() throws IOException {
+    static void exercise3() throws IOException {
         System.out.println("EXERCISE 3");
         String newsUrl = "https://cs.pollub.pl/news/";
         Document doc1 = Jsoup.connect(newsUrl).get();
@@ -23,6 +23,10 @@ public class Lab7 {
         Map<String, String> map = new HashMap<>();
         for (Element e : article1) {
             Elements el = e.children();
+
+            if(el.isEmpty() || el.first() == null || el.size() < 2){
+                continue;
+            }
             map.put(el.first().text(), el.get(1).text());
         }
 
@@ -31,7 +35,7 @@ public class Lab7 {
         }
     }
 
-    private static Map<String, List<String>> exercise1() throws IOException {
+    static Map<String, List<String>> exercise1() throws IOException {
         System.out.println("EXERCISE 1");
         String blogUrl = "https://cs.pollub.pl/staff";
         String last = "";
@@ -76,7 +80,7 @@ public class Lab7 {
         return staff;
     }
 
-    private static void exercise2(Map<String, List<String>> staff) {
+    static void exercise2(Map<String, List<String>> staff) {
         System.out.println("EXERCISE 2\n");
         System.out.println("List of dr and dr inz.:");
         for (String s : staff.keySet()) {

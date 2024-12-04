@@ -6,11 +6,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.jayway.jsonpath.internal.path.PathCompiler.fail;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Lab2Test {
@@ -29,6 +28,19 @@ class Lab2Test {
     }
 
     @Test
+    void testFilterCarBrandsWithDifferentCases() {
+        List<String> cars = Arrays.asList(
+                "BMW X5", "audi A4", "Toyota Corolla", "FORD Mustang", "Mercedes C-Class",
+                "bmw x5", "AUDI A5", "Ford Fiesta"
+        );
+        String filterQuery = "aUdI";
+        List<String> result = lab2.filterCarBrands(cars, filterQuery);
+        List<String> expected = Arrays.asList("audi A4", "AUDI A5");
+        assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+    }
+
+
+    @Test
     void testCountDuplicates() {
         List<String> cars = Arrays.asList(
                 "BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang",
@@ -44,6 +56,17 @@ class Lab2Test {
     }
 
     @Test
+    void testCountDuplicatesWithEmptyList() {
+        List<String> emptyCars = Collections.emptyList();
+
+        Map<String, Long> carFrequencies = emptyCars.stream()
+                .collect(Collectors.groupingBy(car -> car, Collectors.counting()));
+
+        assertThat(carFrequencies).isEmpty();
+    }
+
+
+    @Test
     void testMapListToRentalPrices() {
         List<String> cars = Arrays.asList(
                 "BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang"
@@ -55,6 +78,29 @@ class Lab2Test {
             assertThat(carWithPrice).contains(car + " - ");
         });
     }
+
+    @Test
+    void testMapListToRentalPricesWithinBounds() {
+        List<String> cars = Arrays.asList("BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang");
+        int bound = 200;
+
+        Random random = new Random();
+        List<String> result = cars.stream()
+                .map(car -> {
+                    int price = random.nextInt(bound) + 100;
+                    return car + " - " + price + " PLN/24h";
+                })
+                .toList();
+
+        for (String carWithPrice : result) {
+            assertThat(carWithPrice).containsAnyOf("BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang");
+            String[] parts = carWithPrice.split(" - ");
+            String pricePart = parts[1].replace(" PLN/24h", "");
+            int price = Integer.parseInt(pricePart);
+            assertThat(price).isGreaterThanOrEqualTo(100).isLessThanOrEqualTo(100 + bound);
+        }
+    }
+
 
     @Test
     void testSaveFile() throws IOException {
@@ -74,6 +120,30 @@ class Lab2Test {
         file.delete();
     }
 
+
+    @Test
+    void testSaveFileWithExistingFilename() throws IOException {
+        String filename = "test_existing_file.txt";
+        List<String> initialCars = Arrays.asList("BMW X5", "Audi A4", "Toyota Corolla");
+        List<String> newCars = Arrays.asList("Ford Mustang", "Mercedes C-Class");
+
+        File file = new File(filename);
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            for (String car : initialCars) {
+                fileWriter.write(car + "\n");
+            }
+        }
+        List<String> initialLines = Files.readAllLines(file.toPath());
+        assertThat(initialLines).containsExactlyElementsOf(initialCars);
+
+        lab2.saveFile(newCars, filename);
+
+        List<String> updatedLines = Files.readAllLines(file.toPath());
+        assertThat(updatedLines).containsExactlyElementsOf(newCars);
+        file.delete();
+    }
+
+
     @Test
     void testReadFile() throws IOException {
         String filename = "test_input.txt";
@@ -92,4 +162,25 @@ class Lab2Test {
         assertThat(lines).containsExactly("Audi A4");
         file.delete();
     }
+
+    @Test
+    void testReadFileWithEmptyFile() throws IOException {
+        String filename = "empty_file.txt";
+        File file = new File(filename);
+        if (!file.exists()) {
+            assert file.createNewFile();
+        }
+
+        try {
+            lab2.readFile(filename);
+        } catch (Exception e) {
+            fail("Method readFile should not throw an exception for an empty file.");
+        }
+
+        List<String> lines = Files.readAllLines(file.toPath());
+        assertThat(lines).isEmpty();
+        file.delete();
+    }
+
 }
+

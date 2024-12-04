@@ -136,12 +136,12 @@ public class Lab3 {
                 }
             }
         } catch (Exception e) {
-            System.err.println("Błąd podczas przetwarzania samochodu: " + e.getMessage());
+            throw new IllegalArgumentException("Błąd podczas przetwarzania samochodu: " + e.getMessage());
         }
         return cars;
     }
 
-    private void showParametersAfterReadXML(List<Car> savedCars) {
+    void showParametersAfterReadXML(List<Car> savedCars) {
         savedCars.forEach(car -> {
             System.out.print(car + "\n");
         });

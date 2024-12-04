@@ -81,7 +81,7 @@ public class Lab2 {
         carsWithPrices.forEach(System.out::println);
     }
 
-    private void saveFile(List<String> cars, String filename) {
+    void saveFile(List<String> cars, String filename) {
         File file = new File(filename);
         System.out.println("\nSaving into file...");
         try {
@@ -96,7 +96,7 @@ public class Lab2 {
         System.out.println("Saved!");
     }
 
-    private void readFile(String filename) {
+    void readFile(String filename) {
         Path path = Paths.get(filename);
         System.out.println("\nReading file...");
         try {
