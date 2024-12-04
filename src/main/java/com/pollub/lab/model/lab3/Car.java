@@ -1,5 +1,9 @@
 package com.pollub.lab.model.lab3;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.util.List;
+
 public class Car {
     private String brand;
     private String model;
@@ -38,4 +42,6 @@ public class Car {
     public int getRentalPrice() {
         return rentalPrice;
     }
+
+    public void writeXML(XMLStreamWriter writer) throws XMLStreamException {};
 }
