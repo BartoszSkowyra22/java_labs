@@ -42,7 +42,7 @@ public class Lab3 {
         System.out.println("\nSamochody luksusowe");
         List<LuxuryCar> luxuryCars = new ArrayList<>();
         luxuryCars.add(new LuxuryCar("Mercedes", "S-Class", 2022, 3278, 500, true));
-        luxuryCars.add(new LuxuryCar("BMW", "7 Series", 2021, 24560, 400, true));
+        luxuryCars.add(new LuxuryCar("BMW", "7 Series", 2021, 24560, 400, false));
 
         saveXml(luxuryCars, "luxuryCars.xml");
         List<Car> savedLuxuryCars = readXml("luxuryCars.xml", "LuxuryCar");
@@ -67,28 +67,7 @@ public class Lab3 {
             xmlStreamWriter.writeStartElement("Cars");
 
             for (Car car : cars) {
-                if (car instanceof FamilyCar) {
-                    xmlStreamWriter.writeStartElement("FamilyCar");
-                    writeCommonCarElements(xmlStreamWriter, car);
-                    xmlStreamWriter.writeStartElement("SeatingCapacity");
-                    xmlStreamWriter.writeCharacters(String.valueOf(((FamilyCar) car).getSeatingCapacity()));
-                    xmlStreamWriter.writeEndElement();
-                    xmlStreamWriter.writeEndElement();
-                } else if (car instanceof SportCar) {
-                    xmlStreamWriter.writeStartElement("SportCar");
-                    writeCommonCarElements(xmlStreamWriter, car);
-                    xmlStreamWriter.writeStartElement("TopSpeed");
-                    xmlStreamWriter.writeCharacters(String.valueOf(((SportCar) car).getTopSpeed()));
-                    xmlStreamWriter.writeEndElement();
-                    xmlStreamWriter.writeEndElement();
-                } else if (car instanceof LuxuryCar) {
-                    xmlStreamWriter.writeStartElement("LuxuryCar");
-                    writeCommonCarElements(xmlStreamWriter, car);
-                    xmlStreamWriter.writeStartElement("HasMassageSeats");
-                    xmlStreamWriter.writeCharacters(String.valueOf(((LuxuryCar) car).hasMassageSeats()));
-                    xmlStreamWriter.writeEndElement();
-                    xmlStreamWriter.writeEndElement();
-                }
+                car.writeXML(xmlStreamWriter);
             }
 
             xmlStreamWriter.writeEndElement();
@@ -162,43 +141,9 @@ public class Lab3 {
         return cars;
     }
 
-    private void writeCommonCarElements(XMLStreamWriter writer, Car car) throws Exception {
-        writer.writeStartElement("Brand");
-        writer.writeCharacters(car.getBrand());
-        writer.writeEndElement();
-
-        writer.writeStartElement("Model");
-        writer.writeCharacters(car.getModel());
-        writer.writeEndElement();
-
-        writer.writeStartElement("ProductionYear");
-        writer.writeCharacters(String.valueOf(car.getProductionYear()));
-        writer.writeEndElement();
-
-        writer.writeStartElement("Mileage");
-        writer.writeCharacters(String.valueOf(car.getMileage()));
-        writer.writeEndElement();
-
-        writer.writeStartElement("RentalPrice");
-        writer.writeCharacters(String.valueOf(car.getRentalPrice()));
-        writer.writeEndElement();
-    }
-
-
-    private void showParametersAfterReadXML(List<Car> savedLuxuryCars) {
-        savedLuxuryCars.forEach(car -> {
-            System.out.print("Marka: " + car.getBrand() + ", Model: " + car.getModel() +
-                    ", Rok produkcji: " + car.getProductionYear() +
-                    ", Przebieg: " + car.getMileage() +
-                    ", Cena wynajmu: " + car.getRentalPrice());
-
-            if (car instanceof FamilyCar) {
-                System.out.println(", Liczba miejsc: " + ((FamilyCar) car).getSeatingCapacity());
-            } else if (car instanceof SportCar) {
-                System.out.println(", Prędkość maksymalna: " + ((SportCar) car).getTopSpeed() + " km/h");
-            } else if (car instanceof LuxuryCar) {
-                System.out.println(", Fotele masujące: " + (((LuxuryCar) car).hasMassageSeats() ? "Tak" : "Nie"));
-            }
+    private void showParametersAfterReadXML(List<Car> savedCars) {
+        savedCars.forEach(car -> {
+            System.out.print(car + "\n");
         });
     }
 }
