@@ -3,10 +3,10 @@ package com.pollub.lab.model.lab3;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
-public class LuxuryCar extends Car {
-    private boolean hasMassageSeats;
+public class LuxuryCarImpl extends CarImpl {
+    private final boolean hasMassageSeats;
 
-    public LuxuryCar(String brand, String model, int productionYear, int mileage, int rentalPrice, boolean hasMassageSeats) {
+    public LuxuryCarImpl(String brand, String model, int productionYear, int mileage, int rentalPrice, boolean hasMassageSeats) {
         super(brand, model, productionYear, mileage, rentalPrice);
         this.hasMassageSeats = hasMassageSeats;
     }
@@ -19,25 +19,7 @@ public class LuxuryCar extends Car {
     public void writeXML(XMLStreamWriter writer) throws XMLStreamException {
 
         writer.writeStartElement("LuxuryCar");
-        writer.writeStartElement("Brand");
-        writer.writeCharacters(this.getBrand());
-        writer.writeEndElement();
-
-        writer.writeStartElement("Model");
-        writer.writeCharacters(this.getModel());
-        writer.writeEndElement();
-
-        writer.writeStartElement("ProductionYear");
-        writer.writeCharacters(String.valueOf(this.getProductionYear()));
-        writer.writeEndElement();
-
-        writer.writeStartElement("Mileage");
-        writer.writeCharacters(String.valueOf(this.getMileage()));
-        writer.writeEndElement();
-
-        writer.writeStartElement("RentalPrice");
-        writer.writeCharacters(String.valueOf(this.getRentalPrice()));
-        writer.writeEndElement();
+        writeBasicCarParameters(writer);
         writer.writeStartElement("HasMassageSeats");
         writer.writeCharacters(String.valueOf(this.hasMassageSeats()));
         writer.writeEndElement();

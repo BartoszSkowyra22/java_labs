@@ -2,46 +2,10 @@ package com.pollub.lab.model.lab3;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.util.List;
 
-public class Car {
-    private String brand;
-    private String model;
-    private int productionYear;
-    private int mileage;
-    private int rentalPrice;
+public interface Car {
 
-    public Car(String brand, String model, int productionYear, int mileage, int rentalPrice) {
-        this.brand = brand;
-        this.model = model;
-        this.productionYear = productionYear;
-        this.mileage = mileage;
-        this.rentalPrice = rentalPrice;
-    }
+    void writeXML(XMLStreamWriter writer) throws XMLStreamException;
+    void writeBasicCarParameters(XMLStreamWriter writer) throws XMLStreamException;
 
-    public String getBrand() {
-        return brand;
-    }
-
-
-    public String getModel() {
-        return model;
-    }
-
-
-    public int getProductionYear() {
-        return productionYear;
-    }
-
-
-    public int getMileage() {
-        return mileage;
-    }
-
-
-    public int getRentalPrice() {
-        return rentalPrice;
-    }
-
-    public void writeXML(XMLStreamWriter writer) throws XMLStreamException {};
 }
