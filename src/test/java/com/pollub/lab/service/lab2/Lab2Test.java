@@ -71,7 +71,6 @@ class Lab2Test {
         List<String> cars = Arrays.asList(
                 "BMW X5", "Audi A4", "Toyota Corolla", "Ford Mustang"
         );
-        int bound = 200;
 
         cars.forEach(car -> {
             String carWithPrice = car + " - ";
@@ -117,7 +116,7 @@ class Lab2Test {
         assertThat(file).exists();
         List<String> lines = Files.readAllLines(file.toPath());
         assertThat(lines).containsExactly("BMW X5", "Audi A4", "Toyota Corolla");
-        file.delete();
+        file.deleteOnExit();
     }
 
 
@@ -140,7 +139,7 @@ class Lab2Test {
 
         List<String> updatedLines = Files.readAllLines(file.toPath());
         assertThat(updatedLines).containsExactlyElementsOf(newCars);
-        file.delete();
+        file.deleteOnExit();
     }
 
 
@@ -160,7 +159,7 @@ class Lab2Test {
                 .toList();
 
         assertThat(lines).containsExactly("Audi A4");
-        file.delete();
+        file.deleteOnExit();
     }
 
     @Test
@@ -179,7 +178,7 @@ class Lab2Test {
 
         List<String> lines = Files.readAllLines(file.toPath());
         assertThat(lines).isEmpty();
-        file.delete();
+        file.deleteOnExit();
     }
 
 }
