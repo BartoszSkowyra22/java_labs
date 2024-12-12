@@ -1,4 +1,5 @@
 services:
+  # MySQL Database
   mysql:
     image: mysql:8.0
     container_name: mysql-db
@@ -12,7 +13,10 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
 
+  # phpMyAdmin for managing MySQL
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -24,6 +28,39 @@ services:
       - "8081:80"
     depends_on:
       - mysql
+    networks:
+      - app-network
+
+  # RabbitMQ Broker
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" # RabbitMQ broker port
+      - "15672:15672" # RabbitMQ management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - app-network
+
+  # Mini-server Spring Application
+  mini-server:
+    build:
+      context: ./mini-server
+      dockerfile: Dockerfile
+    container_name: mini-server
+    depends_on:
+      - rabbitmq
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      APP_RABBITMQ_KEY: examplekey
+    networks:
+      - app-network
 
 volumes:
   mysql_data:
+
+networks:
+  app-network:
