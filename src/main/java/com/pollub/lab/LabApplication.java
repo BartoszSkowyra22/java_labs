@@ -15,7 +15,7 @@ public class LabApplication {
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(LabApplication.class, args);
-        showMenu();
+//        showMenu();
     }
 
     private static void showMenu() throws IOException {
@@ -25,7 +25,8 @@ public class LabApplication {
         System.out.println("2. Uruchom Lab 2");
         System.out.println("3. Uruchom Lab 3");
         System.out.println("4. Uruchom Lab 4");
-        System.out.println("7. Uruchom Lab 7");
+        System.out.println("7. Uruchom Lab 7 - JSoup");
+        System.out.println("9. Uruchom Lab 10 - RabbitMQ");
         System.out.println("0. REST API będzie działać w tle");
         System.out.print("Wybierz opcję: ");
 
@@ -51,6 +52,10 @@ public class LabApplication {
                 System.out.println("\n--- Uruchamianie Lab 7 ---");
                 Lab7 lab7 = new Lab7();
                 lab7.runLab7();
+            }
+            case "9" -> {
+                System.out.println("\n--- Uruchamianie Lab 10 ---");
+                System.out.println("---Nasłuchiwanie kolejek RabbitMQ---");
             }
             case "0" -> System.out.println("\n--- REST API działa w tle---");
             default -> System.out.println("\n--- Nieprawidłowa opcja. REST API działa w tle---");
